@@ -1,3 +1,4 @@
 06.09.2025
 1) Installed Project Hub from Quickbase Exchange
 2) Exported QBL schema to YAML file
+3) Going to try and implement a local LLM to parse that QBL YAML file

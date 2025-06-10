@@ -10,3 +10,5 @@ config = get_config()
 config_split = config.split('\n')
 print(config_split[0].split(':'))
 # if second element is blank then it's a header
+# also need to count the number of leading tabs
+# basically you'll need your own custom parser for this type of YAML file
