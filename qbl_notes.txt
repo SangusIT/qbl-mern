@@ -2,3 +2,8 @@
 1) Installed Project Hub from Quickbase Exchange
 2) Exported QBL schema to YAML file
 3) Going to try and implement a local LLM to parse that QBL YAML file
+06.10.2025
+1) Supposedly parsed the YAML file with Copilot
+2) Also used it to generate Python code for create React component files
+3) Needed multiple iterations of prompts for both, still not certain if it's capturing all the details
+4) Will test out React component generation
