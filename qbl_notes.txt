@@ -7,3 +7,20 @@
 2) Also used it to generate Python code for create React component files
 3) Needed multiple iterations of prompts for both, still not certain if it's capturing all the details
 4) Will test out React component generation
+06.11.2025
+1) Looks like it hallucinated a lot of the elements
+2) Going to create much simpler app to start with
+3) Will need to update generate_react.py to handle actual rather than imagined attributes
+4) Also check if read_qbl.py is generating an accurate file
+5) Not totally lost, just needed to get it pointed at the right thing
+6) Now need to refactor all the code where it uses {} interchangeably for both React and Python
+7) Looks like Dashboards aren't exported
+8) Will need to set form properties separately
+9) Also need to loop through each table for the forms, would be better if the loop did this already rather than needing to name them
+10) See if you can pull a list of table names
+11) Fields are nested within elements
+12) Some "Elements" have "Elements" in them
+13) Need to get the fields separately
+14) It'll be cool when you can automatically translate the sections
+15) V2 Forms or a whole other beast
+16) V2 Forms don't have the table name so they are overwriting each other

@@ -40,8 +40,8 @@ def load_yaml_to_json(file_path):
     return json_output
 
 # Example usage:
-yaml_file = "sample_qbl.yaml"
+yaml_file = "simple_app_qbl.yaml"
 json_data = load_yaml_to_json(yaml_file)
 # print(json_data)
-with open("sample_qbl.json", "w") as outfile:
+with open("simple_app_qbl.json", "w") as outfile:
     outfile.write(json_data)

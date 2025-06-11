@@ -6,15 +6,29 @@ output_dir = "react_frontend/src/components/"
 api_url = "http://localhost:5000/api"
 
 # Load JSON structure
-with open("sample_qbl.json", "r", encoding="utf-8") as file:
+with open("simple_app_qbl.json", "r", encoding="utf-8") as file:
     data = json.load(file)
 
 # Ensure the output directory exists
 os.makedirs(output_dir, exist_ok=True)
 
+def generate_inputs(field, field_type):
+    input_elements = ""
+    # Determine input restrictions
+    if field_type == "Number":
+        validation_logic += f"if (isNaN(formData.{field})) {{ alert('{field} must be a number!'); return; }}\n"
+        input_elements += f'<label>{field}<input type="number" name="{field}" onChange={{handleChange}} required/></label><br/>'
+    elif field_type == "Text":
+        input_elements += f'<label>{field}<input type="text" name="{field}" onChange={{handleChange}} required/></label><br/>'
+    elif field_type == "Boolean":
+        input_elements += f'<label>{field}<input type="checkbox" name="{field}" onChange={{handleChange}}/></label><br/>'
+    else:
+        input_elements += f'<label>{field}<input type="text" name="{field}" onChange={{handleChange}} required/></label><br/>'
+    return input_elements
+
 def generate_form_component(form_name, form_data):
     """ Generates a React form with validation based on input rules. """
-    fields = form_data.get("Fields", {})
+    fields = form_data.get("Elements", {})
     rules = form_data.get("Rules", {})
 
     validation_logic = ""
@@ -23,16 +37,14 @@ def generate_form_component(form_name, form_data):
     for field, field_props in fields.items():
         field_type = field_props.get("Type", "text")  # Default to text if type is missing
 
-        # Determine input restrictions
-        if field_type == "Number":
-            validation_logic += f"if (isNaN(formData.{field})) {{ alert('{field} must be a number!'); return; }}\n"
-            input_elements += f'<label>{field}<input type="number" name="{field}" onChange={{handleChange}} required/></label><br/>'
-        elif field_type == "Text":
-            input_elements += f'<label>{field}<input type="text" name="{field}" onChange={{handleChange}} required/></label><br/>'
-        elif field_type == "Boolean":
-            input_elements += f'<label>{field}<input type="checkbox" name="{field}" onChange={{handleChange}}/></label><br/>'
+        if "Elements" in field_props:
+            for field, field_props in field_props["Elements"].items():
+                field_type = field_props.get("Type", "text")  # Default to text if type is missing
+                input_elements += generate_inputs(field_props, field_type)
         else:
-            input_elements += f'<label>{field}<input type="text" name="{field}" onChange={{handleChange}} required/></label><br/>'
+            input_elements += generate_inputs(field, field_type)
+
+        
 
     component_code = f"""import React, {{ useState }} from 'react';
 import {{ createRecord }} from '../apiService';
@@ -143,7 +155,7 @@ const {table_name} = () => {{
                 </thead>
                 <tbody>
                     {{data.map((row, index) => (
-                        <tr key={index}>
+                        <tr key={{index}}>
                             {"".join([f"<td>{{{{row.{col}}}}}</td>" for col in reports.keys()])}
                         </tr>
                     ))}}
@@ -179,16 +191,23 @@ export default {dashboard_name};
     create_component(dashboard_name, component_code)
 
 # Generate API service
-generate_api_service()
+# generate_api_service()
+
+# print('checking data')
+# print(data.get("Resources", {}).get("$App_Simple_App", {}).get("Tables", {}).items())
+# print(data.get("Resources", {}).get("$App_Project_Hub", {}).get("Dashboards", {}).items())
 
 # Generate components for tables, dashboards, and forms
-for table_name, table_data in data.get("QuickBaseApp", {}).get("Tables", {}).items():
-    generate_table_component(table_name, table_data)
+# for table_name, table_data in data.get("Resources", {}).get("$App_Simple_App", {}).get("Tables", {}).items():
+#     generate_table_component(table_name, table_data)
 
-for dashboard_name, dashboard_data in data.get("QuickBaseApp", {}).get("Dashboards", {}).items():
-    generate_dashboard_component(dashboard_name, dashboard_data)
+# for dashboard_name, dashboard_data in data.get("Resources", {}).get("$App_Simple_App", {}).get("Dashboards", {}).items():
+#     generate_dashboard_component(dashboard_name, dashboard_data)
 
-for form_name, form_data in data.get("QuickBaseApp", {}).get("Forms", {}).items():
+for form_name, form_data in data.get("Resources", {}).get("$App_Simple_App", {}).get("Tables", {}).get("$Table_Project", {}).get("Forms", {}).get("Resources", {}).items():
+    generate_form_component(form_name, form_data)
+
+for form_name, form_data in data.get("Resources", {}).get("$App_Simple_App", {}).get("Tables", {}).get("$Table_Tasks", {}).get("Forms", {}).get("Resources", {}).items():
     generate_form_component(form_name, form_data)
 
 print("React components successfully generated!")
