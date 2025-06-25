@@ -1,0 +1,25 @@
+- Map report names for Dashboards - DONE
+- Map field names for forms - DONE
+- Handle nested form elements/sections - DONE
+- V2 Forms - DONE
+    - Pages
+        - Sections
+            - Columns
+                - Elements
+                    - Fields (each field being on its own row in a column)
+- Reformat generate_react.py to object-oriented, have the class list the tables, and cycle through them to get fields, create forms, etc
+- Need it to create a clean list of tables, fields and relationships for database building
+- Need to convert generated buttons like 'Add Record' for parent-child relationships
+- Need to cycle through sub-properties like forms and reports for their properties and how it relates to the table in the database
+- Similar to above tasks need to see how we are linking child records
+- Handle reports on V2 forms
+- Revisit form one column/row stuff
+
+As of 06/24/25 spent 8-12 hours on this (including that research app)
+
+Breakdown of work
+
+- Testing out MERN stack - 2 hours
+- Sample QB app creation and QBL export - 1 hour
+- QBL parser script work - 2 hours
+- Code generator script - 4 hours(ongoing)

@@ -17,7 +17,19 @@ const $Form_Tasks_Main_Form = () => {
     return (
         <form onSubmit={handleSubmit}>
             <h2>$Form_Tasks_Main_Form</h2>
-            <label>$FormElement_1<input type="text" name="$FormElement_1" onChange={handleChange} required/></label><br/><label>$FormElement_2<input type="text" name="$FormElement_2" onChange={handleChange} required/></label><br/><label>$FormElement_3<input type="text" name="$FormElement_3" onChange={handleChange} required/></label><br/><label>$FormElement_4<input type="text" name="$FormElement_4" onChange={handleChange} required/></label><br/>
+            <div className={"row"}>
+			<label>Type</label><input type="text" name="Type" onChange={handleChange} required/>
+			</div>
+			<div className={"row"}>
+			<label>Due Date</label><input type="text" name="Due Date" onChange={handleChange} required/>
+			</div>
+			<div className={"row"}>
+			<label>Status</label><input type="text" name="Status" onChange={handleChange} required/>
+			</div>
+			<div className={"row"}>
+			<label>Project Name</label><input type="text" name="Project Name" onChange={handleChange} required/>
+			</div>
+			
             <button type="submit">Submit</button>
         </form>
     );

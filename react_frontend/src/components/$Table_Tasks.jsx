@@ -10,17 +10,17 @@ const $Table_Tasks = () => {
 
     return (
         <div>
-            <h2>$Table_Tasks</h2>
+            <h2>Tasks</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>$Report_Embedded_for_Project</th><th>$Report_List_All</th><th>$Report_List_Changes</th>
+                        <th>Embedded for Project</th><th>List All</th><th>List Changes</th>
                     </tr>
                 </thead>
                 <tbody>
                     {data.map((row, index) => (
                         <tr key={index}>
-                            <td>{{row.$Report_Embedded_for_Project}}</td><td>{{row.$Report_List_All}}</td><td>{{row.$Report_List_Changes}}</td>
+                            <td><a href="./reports/5">Embedded for Project</a></td><td><a href="./reports/1">List All</a></td><td><a href="./reports/2">List Changes</a></td>
                         </tr>
                     ))}
                 </tbody>

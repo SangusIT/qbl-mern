@@ -22,5 +22,5 @@
 12) Some "Elements" have "Elements" in them
 13) Need to get the fields separately
 14) It'll be cool when you can automatically translate the sections
-15) V2 Forms or a whole other beast
+15) V2 Forms are a whole other beast
 16) V2 Forms don't have the table name so they are overwriting each other

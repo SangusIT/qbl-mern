@@ -10,18 +10,25 @@ const $Form_Project_Main_Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         createRecord('$Form_Project_Main_Form', formData);
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <h2>$Form_Project_Main_Form</h2>
-            <label>$FormElement_1<input type="text" name="$FormElement_1" onChange={handleChange} required/></label><br/><label>$FormElement_3<input type="text" name="$FormElement_3" onChange={handleChange} required/></label><br/><label>$FormElement_4<input type="text" name="$FormElement_4" onChange={handleChange} required/></label><br/><label>$FormElement_5<input type="text" name="$FormElement_5" onChange={handleChange} required/></label><br/><label>$FormElement_6<input type="text" name="$FormElement_6" onChange={handleChange} required/></label><br/>
+            <div className={"row"}>
+                <label>Project Name</label><input type="text" name="Project Name" onChange={handleChange} required />
+            </div>
+            <div className={"row"}>
+                <label>Add Task</label><input type="text" name="Add Task" onChange={handleChange} required />
+                <label>Task records</label><input type="text" name="Task records" onChange={handleChange} required />
+                <label># of Completed Tasks</label><input type="text" name="# of Completed Tasks" onChange={handleChange} required />
+                <label># of Tasks</label><input type="text" name="# of Tasks" onChange={handleChange} required />
+            </div>
             <button type="submit">Submit</button>
         </form>
     );
 };
 
 export default $Form_Project_Main_Form;
-    
